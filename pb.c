@@ -44,8 +44,30 @@ int main(int argc, char** argv)
 {
 	int balls[6];
 	int count_balls = 0;
+<<<<<<< HEAD
 	bool favourite = 0;
 	for (int i=1; i<argc; i++){
+=======
+	int favourite = 0;
+	for (int i=1; i<argc; i++){
+		const char* arg = argv[i];
+		if ('-' == arg[0]){
+			if (0 == strcmp(arg, "-favourite")){
+				favourite = 1;
+			}else{
+				goto usage_error;
+			}
+		}else{
+			char* endptr = NULL;
+			long val = strtol(arg, &endptr, 10);
+			if (*endptr){
+				goto usage_error;
+			}
+		balls[count_balls++] = (int) val;
+		}
+	}
+	if (6 != count_balls){
+>>>>>>> RamaAlumno2
 		goto usage_error;
 	}
 
